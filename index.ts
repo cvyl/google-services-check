@@ -1,4 +1,3 @@
-// get QQ website status
 import axios from 'axios'
 import { writeFileSync } from 'fs'
 import { rm } from 'fs/promises'
@@ -32,9 +31,9 @@ const check = async (name: string, url: string) => {
     .toString()
     .padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}`
 
-  const resultText = ok ? '没倒闭' : '倒闭了'
+  const resultText = ok ? 'Not down' : 'Down'
 
-  const bigHead = '# 今天' + name + '倒闭了吗'
+  const bigHead = '# Is ' + name + ' currently down?'
 
   writeFileSync(
     './readme.md',
@@ -50,9 +49,9 @@ async function main() {
     force: true,
   })
   await Promise.all([
-    check('腾讯', 'https://www.qq.com'),
-    check('微博', 'https://weibo.com'),
-    check('百度', 'https://www.baidu.com'),
+    check('YouTube', 'https://www.youtube.com'),
+    check('Google Search', 'https://google.com'),
+    check('Google Translate', 'https://translate.google.com/'),
   ])
 }
 
